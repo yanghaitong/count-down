@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时器 - 海瞳</title>
+    <link rel="shortcut icon" href="https://haitong-file-1308755100.cos.ap-guangzhou.myqcloud.com/notes%2Flogo.png" type="images/x-icon" />
+    <style>
+        .countdown {
+            width: 300px;
+            height: 350px;
+            text-align: center;
+            margin: 0 auto;
+            line-height: 1;
+            color:#fff;
+            background-color:teal;
+            overflow: hidden;
+        }
+
+        .countdown .next {
+            font-size: 16px;
+            margin: 25px 0 14px 0;
+        }
+
+        .countdown .title {
+            font-size: 40px;
+        }
+
+        .countdown .tips {
+            margin-top: 100px;
+            font-size: 16px;
+        }
+
+        .countdown .small{
+            font-size: 17px;
+        }
+
+        .countdown .clock {
+            width: 250px;
+            margin: 60px 0 0 38px;
+            overflow: hidden;
+        }
+
+        .countdown .clock span,
+        .countdown .clock i {
+            display:block;
+            text-align: center;
+            line-height: 34px;
+            font-size: 16px;
+            float:left;
+        }
+
+        .countdown .clock span{
+            width:35px;
+            height:35px;
+            border-radius: 5px;
+            background-color: #303430;
+        }
+
+        .countdown .clock i {
+            width: 25px;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+<img src="https://gitee.com/yhaitong/hai-picgo/raw/master/images/logo-removebg-preview.png" alt="">
+<div class="countdown">
+    <p class="next">今天是2022年12月15日</p>
+    <p class="title">元旦倒计时</p>
+    <p class="clock">
+        <span id="days"></span>
+        <i>天</i>
+        <span id="hours"></span>
+        <i>:</i>
+        <span id="minutes"></span>
+        <i>:</i>
+        <span id="seconds"></span>
+        <i>秒</i>
+    </p>
+    <p class="tips">
+        现在时间是12:57:40
+    </p>
+</div>
+
+<script>
+    let date = new Date()
+    let year =  date.getFullYear()
+    let month = date.getMonth()+1
+    let day = date.getDate()
+    let clock = document.querySelector('.clock')
+    let next = document.querySelector('.next')
+    let tips = document.querySelector('.tips')
+    let days = document.querySelector('#days')
+    let hours = document.querySelector('#hours')
+    let minutes = document.querySelector('#minutes')
+    let seconds = document.querySelector('#seconds')
+    next.innerHTML = `今天是${year}年${month}月${day}日`
+
+    getTime()
+    setInterval(getTime,1000)
+    function getTime(){
+        let date = new Date()
+        let hour = date.getHours()
+        let minute = date.getMinutes()
+        let second = date.getSeconds()
+        hour = hour < 10 ? '0' + hour : hour
+        minute = minute < 10 ? '0' + minute : minute
+        second = second < 10 ? '0' + second : second
+        tips.innerHTML = `现在时间是${hour}时${minute}分${second}秒`
+    }
+
+    countTime()
+    function countTime(){
+        let now = +new Date()
+        //2、得到指定时间的时间戳
+        let last = +new Date('2023-1-1 8:00:00')
+        // 3、计算剩余的毫秒数/1000 == 剩余的秒数
+        let count = (last-now) / 1000
+        // 4、转换为天时分秒
+        d = parseInt(count/60/60/24)
+        d = d < 10 ? '0' + d : d
+        days.innerHTML = d
+        h= parseInt(count/60/60%24)
+        h = h < 10 ? '0' + h : h
+        hours.innerHTML = h
+        m = parseInt(count/60%60)
+        m = m < 10 ? '0' + m : m
+        minutes.innerHTML = m
+        s = parseInt(count%60)
+        s = s < 10 ? '0' + s : s
+        seconds.innerHTML = s
+        if(count <= 0){
+            clock.innerHTML = '元旦到了！！！'
+        }
+    }
+    setInterval(countTime,1000)
+</script>
+</body>
+</html>
