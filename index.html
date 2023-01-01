@@ -72,7 +72,7 @@
 <img src="https://gitee.com/yhaitong/hai-picgo/raw/master/images/logo-removebg-preview.png" alt="">
 <div  class="countdown">
     <p class="next">今天是2022年12月15日</p>
-    <p class="title">元旦倒计时</p>
+    <p class="title">除夕倒计时</p>
     <p class="clock">
         <span id="days"></span>
         <i>天</i>
@@ -119,7 +119,7 @@
     function countTime(){
         let now = +new Date()
         //2、得到指定时间的时间戳
-        let last = +new Date('2023-1-1 00:00:00')
+        let last = +new Date('2023-1-21 00:00:00')
         // 3、计算剩余的毫秒数/1000 == 剩余的秒数
         let count = (last-now) / 1000
         // 4、转换为天时分秒
@@ -136,7 +136,7 @@
         s = s < 10 ? '0' + s : s
         seconds.innerHTML = s
         if(count <= 0){
-            clock.innerHTML = '元旦到了！！！'
+            clock.innerHTML = '除夕到了！！！'
         }
     }
     setInterval(countTime,1000)
